@@ -130,16 +130,6 @@ describe('Basic Practice', () => {
       cy.get('[data-test="items-packed"]').contains('Tooth Brush').should('exist');
     });
 
-    it('should move an individual item from "Unpacked" to "Packed" (better)', () => {
-      cy.get('[data-test="items-unpacked"] li label')
-        .first()
-        .within(() => {
-          cy.get('input[type="checkbox"]').click();
-        })
-        .then(($item) => {
-          const text = $item.text();
-          cy.get('[data-test="items-packed"] li label').first().should('have.text', text);
-        });
-    });
+    
   });
 });

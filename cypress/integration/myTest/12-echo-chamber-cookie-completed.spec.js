@@ -12,7 +12,6 @@ export const encodeToken = (token) => Buffer.from(JSON.stringify(token)).toStrin
 
 describe('Signing in with a seeded database', () => {
   beforeEach(() => {
-    cy.task('seed');
     cy.visit('/echo-chamber/sign-in');
     cy.signIn(user);
   });
@@ -31,7 +30,6 @@ describe('Signing in with a seeded database', () => {
 
 describe('Setting the cookie', () => {
   beforeEach(() => {
-    cy.task('seed');
     cy.setCookie('jwt', encodeToken({ id: 999, email: 'cypress@example.com' }));
     cy.visit('/echo-chamber/sign-in');
   });
@@ -47,7 +45,6 @@ describe('Setting the cookie', () => {
 
 describe('Setting the cookie with real data', () => {
   beforeEach(() => {
-    cy.task('seed');
     cy.request('/echo-chamber/api/users')
       .then((response) => {
         const [user] = response.body.users;
